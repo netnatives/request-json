@@ -38,7 +38,7 @@ class exports.JsonClient
         header = accept: 'application/json'
         header["authorization"] = @auth if @auth?
         header["user-agent"] = @agent if @agent?
-        header["x-auth-token"] = @token if @token?
+        header["accesstoken"] = @token if @token?
         request
             method: 'GET'
             headers: header
@@ -57,7 +57,7 @@ class exports.JsonClient
             headers:
                 authorization: @auth
                 "user-agent": @agent
-                'x-auth-token': @token
+                'accesstoken': @token
             , (error, response, body) ->
                 if parse then parseBody error, response, body, callback
                 else callback error, response, body
@@ -72,7 +72,7 @@ class exports.JsonClient
             headers:
                 authorization: @auth
                 "user-agent": @agent
-                'x-auth-token': @token
+                'accesstoken': @token
             , (error, response, body) ->
                 parseBody error, response, body, callback
 
@@ -84,7 +84,7 @@ class exports.JsonClient
             uri: url.resolve(@host, path)
             headers:
                 authorization: @auth
-                'x-auth-token': @token
+                'accesstoken': @token
             , (error, response, body) ->
                 parseBody error, response, body, callback
 
